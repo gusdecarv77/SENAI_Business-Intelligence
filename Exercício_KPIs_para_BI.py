@@ -63,7 +63,7 @@ print(df_kpi.round(2))
 # VISUALIZAÇÃO DE DADOS (DATA STORYTELLING)
 # =============================================================================
 
-# Configuração do Gráfico Comparativo
+## Configuração do Gráfico Comparativo para o KPI 1: Índice de Formação Superior (IFS) - Percentual
 plt.figure(figsize=(8, 5))
 cores = ['#2c3e50', '#e74c3c'] 
 grafico = plt.bar(df_kpi['NM_MUNICIPIO'], df_kpi['KPI_1_IFS_Percentual'], color=cores)
@@ -80,6 +80,36 @@ for bar in grafico:
 plt.gca().spines['top'].set_visible(False)
 plt.gca().spines['right'].set_visible(False)
 
+plt.show()
+
+## Configuração do Gráfico Comparativo para o KPI 2: Gap de Formação (Volume absoluto de eleitores sem diploma superior)
+plt.figure(figsize=(8, 5))
+cores_gap = ['#3498db', '#9b59b6']
+grafico_gap = plt.bar(df_kpi['NM_MUNICIPIO'], df_kpi['KPI_2_Gap_Formacao_Absoluto'], color=cores_gap)
+plt.title('KPI 2: Gap de Formação (Eleitores sem Ensino Superior)\n(Goiânia x Anápolis)', fontsize=14)
+plt.ylabel('Número de Eleitores', fontsize=12)
+# Inserção dos rótulos de dados (data labels) sobre as barras
+for bar in grafico_gap:
+    yval = bar.get_height()
+    plt.text(bar.get_x() + bar.get_width()/2, yval + (yval * 0.02), f'{int(yval):_}'.replace('_', '.'), ha='center', va='bottom', fontsize=11, fontweight='bold')    
+# Limpeza visual (remoção das bordas superior e direita para um design mais limpo)
+plt.gca().spines['top'].set_visible(False)
+plt.gca().spines['right'].set_visible(False)
+plt.show()
+
+## Configuração do Gráfico Comparativo para o KPI 3: Densidade de Eleitores com Ensino Superior por 10k Habitantes
+plt.figure(figsize=(8, 5))
+cores_densidade = ['#1abc9c', '#f39c12']
+grafico_densidade = plt.bar(df_kpi['NM_MUNICIPIO'], df_kpi['KPI_3_Superior_por_10k'], color=cores_densidade)
+plt.title('KPI 3: Densidade de Eleitores com Ensino Superior por 10k Habitantes\n(Goiânia x Anápolis)', fontsize=14)
+plt.ylabel('Número de Eleitores por 10k Habitantes', fontsize=12)
+# Inserção dos rótulos de dados (data labels) sobre as barras
+for bar in grafico_densidade:
+    yval = bar.get_height()
+    plt.text(bar.get_x() + bar.get_width()/2, yval + 0.5, f'{yval:.1f}', ha='center', va='bottom', fontsize=11, fontweight='bold')
+# Limpeza visual (remoção das bordas superior e direita para um design mais limpo)
+plt.gca().spines['top'].set_visible(False)
+plt.gca().spines['right'].set_visible(False)
 plt.show()
 
 ## Fim
